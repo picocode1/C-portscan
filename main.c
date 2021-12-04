@@ -26,13 +26,12 @@ bool Scan(char ip[32], int port) {
     }
 } 
 
-int main() {
-    char ip[] = "127.0.0.1";
-    int port = 1234;
-    int result = Scan(ip, port);
-
-    if (result) return printf("Success! %s:%d is alive.", ip, port);
-
-    printf("Failed! %s:%d is dead.", ip, port);
+int main(int argc, char *argv[]) {
+    if (argc == 3) {
+        int port = atoi(argv[2]);
+        if (Scan(argv[1], port)) return printf("true");
+        printf("false");
+    }
+    else printf("Usage: scan.exe <ip> <port>");
     return 0;
 }
